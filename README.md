@@ -7,6 +7,7 @@
 * [Instructions](#instructions)
 * [Description](#Description)
 * [Features](#Features)
+* [Favorite Concept](#favorite)
 
 ## Instructions
 
@@ -93,8 +94,6 @@ The scrollToSection function accepts one parameter, 'section' and
 scrolls to that section of the page. The argument is based on the
 clicked section of the page.                                      */
 
-
-
 This statement calls the NavItems function to append the list 
 items to the unordered list element to create the navigation bar.
             navItems(theSections);
@@ -112,37 +111,10 @@ window.addEventListener("scroll", () =>{
         setActiveClass(currentSection,sectionPosition.top, sectionPosition.bottom);
     }
 })
+##Favorite
 
-setActiveClass sets the the matching anchor tag background 
-and text color, by adding the drk__color class, while removing 
-"drk__color" from any non-matching anchor tag elements while 
-SCROLLING through the materials.
-
-function setActiveClass (currentSection, topPosition, bottomPosition) {
-    
-    if (topPosition > 0 
-        && topPosition < vpHeight
-        && bottomPosition <= vpHeight){
-        //console.log("section/top/bottom: \n",currentSection, topPosition, bottomPosition);
-        let sectionId = currentSection;
-        
-        const navElements = document.getElementsByTagName("a");
-        
-        for (let i = 0; i<navElements.length; i++) {
-            const navElementHref = navElements[i].getAttribute("href");
-            console.log(navElementHref)
-            if(navElementHref === "#"+sectionId) {
-                navElements[i].classList.add("drk__color");
-                theSections[i].classList.add("your-active-class")
-                //theSectionDivs[i].classList.add("landing__container");
-                //console.log(`navElemenHref ${navElementHref} sectionID: #${sectionId}`);
-                //console.log("Current Matching Nav Element: ", navElements[i].getAttribute('href'));
-            } else {
-                navElements[i].classList.remove("drk__color");
-                //theSectionDivs[i].classList.remove("landing__container");
-                theSections[i].classList.remove("your-active-class")
-            }
-        }
-    }
-    
-}
+Setting the active class for the sections and highlighting the navigating tab was my
+favorite aspect of building out the web page. For me there was a challeging learning 
+process to determine how to select the proper element and compare based on a click or 
+a scroll and the match up the element to be updated, as well as remove the class for 
+elements not in focus. 
