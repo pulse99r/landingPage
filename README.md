@@ -1,3 +1,5 @@
+![kenti099](https://user-images.githubusercontent.com/97370716/187524076-6ca10796-ce0c-428e-a144-cb50e7f8ec61.jpeg)
+
 # Landing Page Project
 
 ## Table of Contents
@@ -33,7 +35,11 @@ For specific, detailed instructions, look at the project instructions in the Uda
  * Great to have comments before crucial code sections within the procedure.
 */
 
+## Description
 
+##Features
+
+##Variables
 //Get the unordered list from the page
 const navbarList = document.getElementById('navbar__list');
 
