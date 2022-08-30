@@ -17,7 +17,7 @@ To get started, open `js/app.js` and start building out the app's functionality
 
 For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
 
------------------------
+----------------------
 /**
  * 
  * Manipulating the DOM exercise.
@@ -37,6 +37,7 @@ For specific, detailed instructions, look at the project instructions in the Uda
  * Comments should be present at the beginning of each procedure and class.
  * Great to have comments before crucial code sections within the procedure.
 */
+-----------------------
 
 ## Description
 This is primarily an exercise in manipulating the DOM. As a student at Udacity, this was the last
@@ -63,9 +64,9 @@ elements not in focus.
 
 ## Developer
 
-###Raymond "Kenti" Johnson
-####email:  pulse99@yahoo.com
-####Social Media Links 
-* <a href="https://www.linkedin.com/in/pulse99/">Linked In</a>
-* <a href="http://www.facebook.com/pulse99">Facebook</a>
+* Raymond "Kenti" Johnson
+* email:  pulse99@yahoo.com
+* Social Media Links: 
+* <a href="https://www.linkedin.com/in/pulse99/" target="_blank">Linked In</a>
+* <a href="http://www.facebook.com/pulse99" target="_blank">Facebook</a>
 
