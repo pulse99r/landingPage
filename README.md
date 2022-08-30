@@ -53,64 +53,6 @@ the elements as the page is manipulated bia mouse clicks or scrolling.
 * Dynamically set an "active state" flag for the section currently in the viewport
 
 
-## Variables
-//Get the unordered list from the page
-const navbarList = document.getElementById('navbar__list');
-
-//Gets the sections from the page
-const theSections = document.querySelectorAll('section');
-const theSectionDivs = document.querySelectorAll('.landing__container');
-
-Captures the number of sections from length property 
-of the sections to be used as a counter in the loop 
-to create the navbar list items.
-
-const sectionCount = theSections.length; 
-
-
-Captures the viewport height for use in determining  
-the position of the sections during scroll                 */
-const vpHeight = window.innerHeight;
-
-Create the list items for navbarList                   */
-
-
-The remaining code in this anchorTag event listener
-highlight the clicked navigation tab by setting 
-it's background color to black and the text color to white */
-             
-get the nav anchor tag elements                         */
-const navElemAs = document.getElementsByTagName('a');
-            
-gets the event target                                     */
-
-Loop through and compare the anchor tag elements 
-with the clicked target, then set the matching anchor 
-tag background and text color, by adding the drk__color 
-class, while removing "drk__color" from any non-matching 
-anchor tag elements.
-
-The scrollToSection function accepts one parameter, 'section' and  
-scrolls to that section of the page. The argument is based on the
-clicked section of the page.                                      */
-
-This statement calls the NavItems function to append the list 
-items to the unordered list element to create the navigation bar.
-            navItems(theSections);
-
-
-Using a scroll event listener, we listen for scroll events and invokes 
-the setActiveClass function passing in the section currently in the
-viewport (currentSection), the position of the top (sectionPosition.top) 
-and the position of the bottom (sectionPosition.bottom).
-
-window.addEventListener("scroll", () =>{ 
-    for(let j = 0; j <theSections.length; j++) {
-        let currentSection = theSections[j].id;
-        let sectionPosition = theSections[j].getBoundingClientRect();
-        setActiveClass(currentSection,sectionPosition.top, sectionPosition.bottom);
-    }
-})
 ## Favorite
 
 Setting the active class for the sections and highlighting the navigating tab was my
@@ -118,3 +60,12 @@ favorite aspect of building out the web page. For me there was a challeging lear
 process to determine how to select the proper element and compare based on a click or 
 a scroll and the match up the element to be updated, as well as remove the class for 
 elements not in focus. 
+
+## Developer
+
+###Raymond "Kenti" Johnson
+####email:  pulse99@yahoo.com
+####Social Media Links 
+* <a href="https://www.linkedin.com/in/pulse99/">Linked In</a>
+* <a href="http://www.facebook.com/pulse99">Facebook</a>
+
