@@ -5,6 +5,8 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
+* [Description](#Description)
+* [Features](#Features)
 
 ## Instructions
 
