@@ -38,8 +38,19 @@ For specific, detailed instructions, look at the project instructions in the Uda
 */
 
 ## Description
+This is primarily an exercise in manipulating the DOM. As a student at Udacity, this was the last
+project for successfully completing the Front-End-Web-Development NanoDegree Course.
+
+The project involves accessing the elements of a landing page, creating the navigation menu
+using javaScript, and through JS program, functions, event listeners, dynamically manipulating 
+the elements as the page is manipulated bia mouse clicks or scrolling.
 
 ##Features
+* Dynamically build navigation menu with JS
+* On click, dynamically update navigation menu items to indicate which item was clicked
+* On click, dynamically scroll to selected section of page
+* Dynamically set an "active state" flag for the section currently in the viewport
+
 
 ##Variables
 //Get the unordered list from the page
