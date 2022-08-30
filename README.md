@@ -8,6 +8,9 @@
 * [Description](#Description)
 * [Features](#Features)
 * [Favorite Concept](#Favorite)
+* [Developer](#Developer)
+* [Social Media](#SocialMedia)
+
 
 ## Instructions
 
@@ -64,9 +67,10 @@ elements not in focus.
 
 ## Developer
 
-* Raymond "Kenti" Johnson
+* Developer:  Raymond "Kenti" Johnson
+* ABOUT:  Kenti's background includes a 30-year career as a Computer Analyst in a large number of top Corporate 500 companies in industries ranging from Wall Street to big pharmaceuticals, to retail to newspapers and non-profits, in diciplines that include Desktop Hardware/Software Support, Network Configuration, Applications Programming, End User Training, Logistics and Disaster Recovery.  
 * email:  pulse99@yahoo.com
-* Social Media Links: 
+### SocialMedia: 
 * <a href="https://www.linkedin.com/in/pulse99/" target="_blank">Linked In</a>
 * <a href="http://www.facebook.com/pulse99" target="_blank">Facebook</a>
 
