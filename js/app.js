@@ -33,7 +33,7 @@ const sectionCount = theSections.length;
 /*
     Captures the viewport height for use in determining  
     the position of the sections during scroll                 */
-const vpHeight = window.innerHeight;
+// const vpHeight = window.innerHeight;
 
 /**
  * End Global Variables
@@ -59,7 +59,8 @@ const navItems = (sections) => {
             /* 
               The function scrollToSection performs the scroll to
               the section clicked                                    */
-            scrollToSection(sections[i]);
+              vpHeight = window.innerHeight;
+              scrollToSection(sections[i]);
 
             /*
               The remaining code in this anchorTag event listener
@@ -110,6 +111,7 @@ navItems(theSections);
    viewport (currentSection), the position of the top (sectionPosition.top) 
    and the position of the bottom (sectionPosition.bottom)                  */
 window.addEventListener("scroll", () =>{ 
+    vpHeight = window.innerHeight;
     for(let j = 0; j <theSections.length; j++) {
         let currentSection = theSections[j].id;
         let sectionPosition = theSections[j].getBoundingClientRect();
@@ -124,8 +126,8 @@ window.addEventListener("scroll", () =>{
 function setActiveClass (currentSection, topPosition, bottomPosition) {
     
     if (topPosition > 0 
-        && topPosition < vpHeight
-        && bottomPosition <= vpHeight){
+        && topPosition < vpHeight/3
+        && (bottomPosition <= vpHeight || bottomPosition >= vpHeight)){
         //console.log("section/top/bottom: \n",currentSection, topPosition, bottomPosition);
         let sectionId = currentSection;
 
