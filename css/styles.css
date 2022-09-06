@@ -68,9 +68,15 @@ section {
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
-    text-align: right;  
+    text-align: right;
+}
+.display__off {
+    display: none;
 }
 
+.display__on {
+    display: inline-block;
+}
 .navbar__menu li {
     display: inline-block;
 }
@@ -88,10 +94,9 @@ section {
     color: #fff;
     transition: ease 0.3s all;
 }
-.navbar__menu .drk__color {
+.navbar__menu .active__tag {
     color: #fff;
     background-color:#000;
-
 }
 /* Header Styles */
 .page__header {
