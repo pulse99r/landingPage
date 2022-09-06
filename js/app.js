@@ -20,7 +20,7 @@ function sectionPositions() {
             sectionTops[i + 1] = footerPos;
         }
     }
-    console.log("*** SectionPositions: sectionTops: ", sectionTops);
+    //console.log("*** SectionPositions: sectionTops: ", sectionTops);
 }
 
 //Clears the active 'state flag' for the Navigation Ancor Tags and and the sections
@@ -74,11 +74,11 @@ function doTheScroll() {
        4. Update the active state for that section
     */
     const scrollPosition = window.pageYOffset;
-    console.log("scrollPosition ====>", scrollPosition)
+    //console.log("scrollPosition ====>", scrollPosition)
     const navAncorTags = document.getElementsByTagName('a');
 
     const vpHeight = window.innerHeight;
-    console.log("viewport height: ", vpHeight, "scrollPosition: ", scrollPosition);
+    //console.log("viewport height: ", vpHeight, "scrollPosition: ", scrollPosition);
     for(let i = 0; i < theSections.length; i++){
         let sectionATop = sectionTops[i];
         let sectionBTop = sectionTops[i+1];
@@ -86,10 +86,10 @@ function doTheScroll() {
         
         if(scrollPosition + 20 >= sectionATop 
             && scrollPosition <= sectionBTop && sectionATop > vpHeight/6) { 
-            console.log(theSections[i].id,"scrollPosition ",scrollPosition, "is greater than ", 
-            " sectionATop:", sectionATop, "and scrollPosition ",scrollPosition, 
-            "is LESS than sectionBTop", sectionBTop,
-            " and sectionABottom");
+            // console.log(theSections[i].id,"scrollPosition ",scrollPosition, "is greater than ", 
+            // " sectionATop:", sectionATop, "and scrollPosition ",scrollPosition, 
+            // "is LESS than sectionBTop", sectionBTop,
+            // " and sectionABottom");
             clearActiveStates();
             navAncorTags[i].classList.add('active__tag');
             theSections[i].classList.add('your-active-class');
