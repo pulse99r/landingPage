@@ -23,14 +23,48 @@ function sectionPositions() {
     //console.log("*** SectionPositions: sectionTops: ", sectionTops);
 }
 
+//create a button that return to the top which is dynamically displayed 
+//when the first section scrolls past the top of the page. CSS classes
+//are used to show/hide the button.
+function addBackToTopButton () {
+    const mainElem = document.getElementById("mainEl");
+    const topButton = document.createElement('button');
+    topButton.innerText = "Top";
+    topButton.setAttribute('href','#section1');
+    topButton.setAttribute('type','button');
+    topButton.classList.add('show__Button');
+    topButton.setAttribute('id','topbutton');
+    mainElem.append(topButton);
+    return true;
+}
+
+//Hide the 'return to top button'
+function manageButton(state){
+    const buttonToShow = document.getElementById('topbutton');
+    switch (state) {
+    case 'show': 
+        buttonToShow.classList.remove('hide__button');
+        buttonToShow.classList.add('show__Button');
+        buttonDisplayed = true;
+    break;
+    case 'hide':
+        buttonToShow.classList.remove('show__Button');
+        buttonToShow.classList.add('hide__button');
+        buttonDisplayed = false;
+        break;
+    }
+}
+
 //Clears the active 'state flag' for the Navigation Ancor Tags and and the sections
 function clearActiveStates () {
     const anchorTags = document.getElementsByTagName('a');
+    
     for(let i = 0; i < theSections.length; i++) {
         theSections[i].classList.remove('your-active-class');
         anchorTags[i].classList.remove('active__tag');
-    } 
+    }   
 }
+
 /*This function builds out the navigation list items with a tags and appends 
 them to the the navigation ul for the menu. */  
 function buildNavItems (){
@@ -53,7 +87,14 @@ function buildNavItems (){
             const destinationSection = document.getElementById(clickedATag);
             clearActiveStates();
             ev.target.classList.add('active__tag');
-            destinationSection.classList.add('your-active-class')
+            destinationSection.classList.add('your-active-class');
+            
+            // function setActiveStates(clickedATag,) {
+            //     ev.target.classList.add('active__tag');
+            //     destinationSection.classList.add('your-active-class');
+            // }
+            //setActiveStates();
+
             destinationSection.scrollIntoView({
                 behavior: 'smooth'
             });
@@ -76,21 +117,26 @@ function doTheScroll() {
     const scrollPosition = window.pageYOffset;
     //console.log("scrollPosition ====>", scrollPosition)
     const navAncorTags = document.getElementsByTagName('a');
-
+    
     const vpHeight = window.innerHeight;
-    //console.log("viewport height: ", vpHeight, "scrollPosition: ", scrollPosition);
     for(let i = 0; i < theSections.length; i++){
         let sectionATop = sectionTops[i];
-        let sectionBTop = sectionTops[i+1];
         let sectionABottom = sectionBottoms[i]
-        
-        if(scrollPosition + 20 >= sectionATop 
-            && scrollPosition <= sectionBTop && sectionATop > vpHeight/6) { 
+        let sectionBTop = sectionTops[i+1];
+        let sectionPrevTop = sectionTops[0];
+        let sectionPrevBottom = sectionBottoms[0];
+        if( i > 0 ){
+            sectionPrevBottom = sectionBottoms[i-1];
+        } else sectionPrevBottom = sectionBottoms[0]
+
+        if(scrollPosition + 80 >= sectionATop 
+            && scrollPosition <= sectionABottom ) { 
             // console.log(theSections[i].id,"scrollPosition ",scrollPosition, "is greater than ", 
             // " sectionATop:", sectionATop, "and scrollPosition ",scrollPosition, 
             // "is LESS than sectionBTop", sectionBTop,
             // " and sectionABottom");
             clearActiveStates();
+            currrentSectionInView = sectionATop;
             navAncorTags[i].classList.add('active__tag');
             theSections[i].classList.add('your-active-class');
         }
@@ -99,12 +145,30 @@ function doTheScroll() {
 
 
 buildNavItems();
-sectionPositions()
+
 window.addEventListener('scroll', (event) => {
-    //event.preventDefault()
-    doTheScroll(event)
+    event.preventDefault()
+    sectionPositions()
+    doTheScroll()
+    const threshhold = sectionTops[1];
+    while (buttonAdded !== true) {
+        buttonAdded = addBackToTopButton()
+    }
     
+    const sectPosition = window.pageYOffset;
+    let buttonAdded = false;
+    let buttonDisplayed = false;
+    while(buttonAdded === true){
+        if(sectPosition < threshhold) {
+            buttonDisplayed = manageButton("hide");
+            console.log("button added and hidden");
+        } else if(sectPosition > threshhold){
+            buttonDisplayed = manageButton("show");
+            console.log("button added and shown");
+        }
+    }
 });
+
 
 
 

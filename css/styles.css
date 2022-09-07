@@ -61,6 +61,21 @@ section {
     min-height: 80vh;
 }
 
+.show__Button {
+    display:block;
+    position: fixed;
+    right: 100px;
+    bottom: 200px;
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 100px;
+    height: 40px;
+}
+.hide__button {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
 
 /* ---- Module Rules ---- */
 
