@@ -150,15 +150,16 @@ window.addEventListener('scroll', (event) => {
     event.preventDefault()
     sectionPositions()
     doTheScroll()
+    const sectPosition = window.pageYOffset;
+    let buttonAdded = false;
+    let buttonDisplayed = false;
     const threshhold = sectionTops[1];
     while (buttonAdded !== true) {
         buttonAdded = addBackToTopButton()
     }
     
-    const sectPosition = window.pageYOffset;
-    let buttonAdded = false;
-    let buttonDisplayed = false;
-    while(buttonAdded === true){
+  
+    if (buttonAdded === true){
         if(sectPosition < threshhold) {
             buttonDisplayed = manageButton("hide");
             console.log("button added and hidden");
