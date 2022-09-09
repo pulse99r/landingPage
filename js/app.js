@@ -2,11 +2,13 @@
 //Global variables for the sections and the nav unordered list tag
 const theSections = document.getElementsByTagName('section'); //document sections
 const navUl = document.getElementById("navbar__list"); //UL nav tag
-
+let navTagData = {}; //globally accessible nav anchor data-id attributes
 const sectionTops = []; //captures the positions of the tops of the sectiions
 const sectionBottoms = []; //captures the positions of the bottoms of sections
+const buttonToShow = document.getElementById('topbutton'); //button returns to the of the document
 let currrentSectionInView = ''; //section currently in viewport
 
+//Determines the position of the sections somg getBoundingClientRect
 function sectionPositions() {
     const footerPos = document.getElementById('footer').getBoundingClientRect().top + window.pageYOffset;
 
@@ -29,7 +31,7 @@ function sectionPositions() {
 function addBackToTopButton () {
     const mainElem = document.getElementById("mainEl");
     const topButton = document.createElement('button');
-    topButton.innerText = "Top";
+    topButton.innerText = "Back To Top";
     topButton.setAttribute('href','#section1');
     topButton.setAttribute('type','button');
     topButton.classList.add('show__Button');
@@ -40,7 +42,6 @@ function addBackToTopButton () {
 
 //Hide the 'return to top button'
 function manageButton(state){
-    const buttonToShow = document.getElementById('topbutton');
     switch (state) {
     case 'show': 
         buttonToShow.classList.remove('hide__button');
@@ -55,20 +56,38 @@ function manageButton(state){
     }
 }
 
-//Clears the active 'state flag' for the Navigation Ancor Tags and and the sections
-function clearActiveStates () {
-    const anchorTags = document.getElementsByTagName('a');
-    
-    for(let i = 0; i < theSections.length; i++) {
-        theSections[i].classList.remove('your-active-class');
-        anchorTags[i].classList.remove('active__tag');
-    }   
+function setActiveState(event, destinationSection) {
+    let i = 0;
+    if(!event === null || !event === "") {
+        for(let i = 0; i < theSections.length; i++){
+            event.target.classList.remove('your-active-class');
+            theSections.classList.remove('your-active-class');
+        }
+        event.target.classList.addd('your-active-class');
+        if(theSections.id === destinationSection) {
+            theSections[i].classList.add('your-active-class');
+        }
+    } else {
+        for (const sect of theSections) {    
+            const rect = sect.getBoundingClientRect();
+
+            if(rect.top <= 190 && rect.bottom >=390) {
+                //apply active state
+                sect.classList.add('your-active-class');
+                navTagData[i].classList.add('active__tag');                
+            } else {
+                sect.classList.remove('your-active-class');
+                navTagData[i].classList.remove('active__tag');
+            }
+        i++
+        }
+    }
 }
 
 /*This function builds out the navigation list items with a tags and appends 
 them to the the navigation ul for the menu. */  
 function buildNavItems (){
-    for(let i=0; i<theSections.length; i++){
+    for(let i = 0; i < theSections.length; i++){
         const listNavItems = document.createElement("li");
         const aNavTags = document.createElement('a');
         //get data-nav attribute from sections
@@ -77,100 +96,54 @@ function buildNavItems (){
         aNavTags.classList.add('menu__link');
         aNavTags.setAttribute("href","#" + theSections[i].id);
         aNavTags.setAttribute("data-id", theSections[i].id);
+        //aNavTags.setAttribute("id",theSections[i].id);
         listNavItems.append(aNavTags);
         navUl.append(listNavItems);
         /**listens for click event, moves to section indicated by 
          * click nav item updates the active states of the menu and the sections */ 
-        aNavTags.addEventListener('click', function(ev) {
-            ev.preventDefault(); 
-            const clickedATag = ev.target.getAttribute('data-id');
+        aNavTags.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            const clickedATag = event.target.getAttribute('data-id');
             const destinationSection = document.getElementById(clickedATag);
-            clearActiveStates();
-            ev.target.classList.add('active__tag');
-            destinationSection.classList.add('your-active-class');
-            
-            // function setActiveStates(clickedATag,) {
-            //     ev.target.classList.add('active__tag');
-            //     destinationSection.classList.add('your-active-class');
-            // }
-            //setActiveStates();
-
+            setActiveState(event, destinationSection);
             destinationSection.scrollIntoView({
                 behavior: 'smooth'
             });
         });
+        const navTagDataArr = document.getElementsByTagName("a");
+        window.addEventListener('scroll', (event) => {
+            event.preventDefault();
+            //convert navTagDataArr array into an object for easier reference.
+            navTagData = Object.assign({}, navTagDataArr);
+            setActiveState();
+            buttonActiveState();
+        });        
     }
 }
-
 
 /* keeps track of the scrolling position and updates the active states 
 of both the sections in view and the menu a tags.*/
 //handles the scrolling and updates the active tags and sections during scrolling
-function doTheScroll() {
-    /* 1. Get the scroll position (scrollPosition)
-       2. Build a table of the tops of each section
-       3. If the scroll position is betweem the top of Section A 
-          and the top of Section B, then that section is in the 
-          viewport.
-       4. Update the active state for that section
-    */
-    const scrollPosition = window.pageYOffset;
-    //console.log("scrollPosition ====>", scrollPosition)
-    const navAncorTags = document.getElementsByTagName('a');
-    
-    const vpHeight = window.innerHeight;
-    for(let i = 0; i < theSections.length; i++){
-        let sectionATop = sectionTops[i];
-        let sectionABottom = sectionBottoms[i]
-        let sectionBTop = sectionTops[i+1];
-        let sectionPrevTop = sectionTops[0];
-        let sectionPrevBottom = sectionBottoms[0];
-        if( i > 0 ){
-            sectionPrevBottom = sectionBottoms[i-1];
-        } else sectionPrevBottom = sectionBottoms[0]
-
-        if(scrollPosition + 80 >= sectionATop 
-            && scrollPosition <= sectionABottom ) { 
-            // console.log(theSections[i].id,"scrollPosition ",scrollPosition, "is greater than ", 
-            // " sectionATop:", sectionATop, "and scrollPosition ",scrollPosition, 
-            // "is LESS than sectionBTop", sectionBTop,
-            // " and sectionABottom");
-            clearActiveStates();
-            currrentSectionInView = sectionATop;
-            navAncorTags[i].classList.add('active__tag');
-            theSections[i].classList.add('your-active-class');
-        }
-    }
-}
-
-
-buildNavItems();
-
-window.addEventListener('scroll', (event) => {
-    event.preventDefault()
-    sectionPositions()
-    doTheScroll()
+function buttonActiveState() {
     const sectPosition = window.pageYOffset;
     let buttonAdded = false;
     let buttonDisplayed = false;
-    const threshhold = sectionTops[1];
     while (buttonAdded !== true) {
-        buttonAdded = addBackToTopButton()
+        buttonAdded = addBackToTopButton();
     }
     
-  
     if (buttonAdded === true){
-        if(sectPosition < threshhold) {
+        //if(sectPosition < threshhold) {
+        if(sectPosition >= sectionTops[2]){
             buttonDisplayed = manageButton("hide");
             console.log("button added and hidden");
-        } else if(sectPosition > threshhold){
+        } else { //if(sectPosition > threshhold){
             buttonDisplayed = manageButton("show");
             console.log("button added and shown");
         }
     }
-});
+}
 
-
-
+buildNavItems();
 
   
