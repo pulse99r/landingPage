@@ -51,10 +51,13 @@ using javaScript, and through JS program, functions, event listeners, dynamicall
 the elements as the page is manipulated bia mouse clicks or scrolling.
 
 ## Features
-* Dynamically build navigation menu with JS
+* Dynamically build navigation menu with JS adding or removing a section in the HTML will
+  cause the menu to automatically adjust.
 * On click, dynamically update navigation menu items to indicate which item was clicked
 * On click, dynamically scroll to selected section of page
 * Dynamically set an "active state" flag for the section currently in the viewport
+* A floating button that links back to the top of the page appears near the bottom right 
+  of the page after clicking or scrolling past the end of the first section, and remains visible until a return to the first section.
 
 
 ## Favorite
@@ -68,7 +71,9 @@ elements not in focus.
 ## Developer
 
 * Developer:  Raymond "Kenti" Johnson
-* ABOUT:  Kenti's background includes a 30-year career as a Computer Analyst in a large number of top Corporate 500 companies in industries ranging from Wall Street to big pharmaceuticals, to retail to newspapers and non-profits, in diciplines that include Desktop Hardware/Software Support, Network Configuration, Applications Programming, End User Training, Logistics and Disaster Recovery.  
+* ABOUT:  Kenti's background includes a 30-year career as a Computer Analyst in a large
+  number of top Corporate 500 companies in industries ranging from Wall Street to big
+  pharmaceuticals, to retail to newspapers and non-profits, in diciplines that include Desktop Hardware/Software Support, Network Configuration, Applications Programming, End User Training, Logistics and Disaster Recovery.  
 * email:  pulse99@yahoo.com
 ### SocialMedia: 
 * <a href="https://www.linkedin.com/in/pulse99/" target="_blank">Linked In</a>
