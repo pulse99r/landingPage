@@ -7,8 +7,8 @@ let sectionTops = []; //captures the positions of the tops of the sectiions
 let sectionBottoms = []; //captures the positions of the bottoms of sections
 let currrentSectionInView = ''; //section currently in viewport
 let buttonToShow = "";
-let buttonAdded = false;
-let buttonDisplayed = false;
+let buttonAdded = false; //boolean value; true indicates the button has been added to the page.
+let buttonDisplayed = false; //boolean value; set to true when the button is being displayed; set to false the button is hidden
 
 //Determines the position of the sections using getBoundingClientRect
 function sectionPositions() {
@@ -24,7 +24,6 @@ function sectionPositions() {
             sectionTops[i + 1] = footerPos;
         }
     }
-    //console.log("*** SectionPositions: sectionTops: ", sectionTops);
 }
 
 //create a button that return to the top which is dynamically displayed 
@@ -41,10 +40,17 @@ function addBackToTopButton () {
     topButton.setAttribute('id','topbutton');
     topButton.append(anchorButton);
     mainElem.append(topButton);
+    topButton.addEventListener("click", (e) =>{
+        e.preventDefault();
+        mainElem.scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
     return true;
 }
 
-//Hide the 'return to top button'
+//Manages hiding and showing the 'return to top' button.
+//Hiding and showing the button is done using CSS by adding and removing classes to and from the button's classlist.
 function manageButton(state){
     switch (state) {
    case 'hide':
@@ -61,6 +67,7 @@ function manageButton(state){
     }
 }
 
+//funcion sets the active states for the navigation tags and the sections.
 function setActiveState(event, destinationSection) {
     let i = 0;
     if(!event === null || !event === "") {
@@ -77,10 +84,11 @@ function setActiveState(event, destinationSection) {
             const rect = sect.getBoundingClientRect();
 
             if(rect.top <= 190 && rect.bottom >=390) {
-                //apply active state
+                //apply active states
                 sect.classList.add('your-active-class');
                 navTagData[i].classList.add('active__tag');                
             } else {
+                //remove active states
                 sect.classList.remove('your-active-class');
                 navTagData[i].classList.remove('active__tag');
             }
@@ -149,5 +157,6 @@ function buttonActiveState() {
     
 }
 
+//function call invokes the main function that build the navigation
 buildNavItems();
 

@@ -61,6 +61,7 @@ section {
     min-height: 80vh;
 }
 
+/* ---- Button Styles ---- */
 .show__Button {
     display: block;
     position: fixed;
@@ -81,6 +82,7 @@ section {
     visibility: hidden;
     opacity: 0;
 }
+/* --- End Button Styles --- */
 
 
 /* ---- Module Rules ---- */
