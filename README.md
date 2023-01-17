@@ -78,4 +78,4 @@ elements not in focus.
 ### SocialMedia: 
 * <a href="https://www.linkedin.com/in/pulse99/" target="_blank">Linked In</a>
 * <a href="http://www.facebook.com/pulse99" target="_blank">Facebook</a>
-
+:grinning:
